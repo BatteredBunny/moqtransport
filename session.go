@@ -601,7 +601,7 @@ func (s *Session) UpdateSubscription(ctx context.Context, subscriptionRequestID 
 
 // acceptSubscriptionWithOptions accepts a subscription with relevant options.
 func (s *Session) acceptSubscriptionWithOptions(id uint64, opts *SubscribeOkOptions) error {
-	_, ok := s.localTracks.confirm(id)
+	lt, ok := s.localTracks.confirm(id)
 	if !ok {
 		return errUnknownRequestID
 	}
@@ -619,6 +619,7 @@ func (s *Session) acceptSubscriptionWithOptions(id uint64, opts *SubscribeOkOpti
 
 	msg := &wire.SubscribeOkMessage{
 		RequestID:     id,
+		TrackAlias:    lt.trackAlias,
 		Expires:       opts.Expires,
 		GroupOrder:    uint8(opts.GroupOrder),
 		ContentExists: opts.ContentExists,
@@ -1186,6 +1187,12 @@ func (s *Session) onSubscribeError(msg *wire.SubscribeErrorMessage) error {
 }
 
 func (s *Session) onSubscribeUpdate(msg *wire.SubscribeUpdateMessage) error {
+	// Validate Request ID against flow control limit (per draft-14, SUBSCRIBE_UPDATE
+	// increments the request ID counter and is subject to flow control)
+	if msg.RequestID >= s.localMaxRequestID.Load() {
+		return errMaxRequestIDViolated
+	}
+
 	// Find the local track by SubscriptionRequestID to validate the subscription exists
 	_, ok := s.localTracks.findByID(msg.SubscriptionRequestID)
 	if !ok {
