@@ -26,17 +26,17 @@ func TestClientSetupMessageAppend(t *testing.T) {
 		},
 		{
 			csm: ClientSetupMessage{
-				SupportedVersions: []Version{Draft_ietf_moq_transport_00},
+				SupportedVersions: []Version{CurrentVersion},
 				SetupParameters:   KVPList{},
 			},
 			buf: []byte{},
 			expect: []byte{
-				0x01, 0xc0, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0x00, 0x00,
+				0x01, 0xc0, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0x0e, 0x00,
 			},
 		},
 		{
 			csm: ClientSetupMessage{
-				SupportedVersions: []Version{Draft_ietf_moq_transport_00},
+				SupportedVersions: []Version{CurrentVersion},
 				SetupParameters: KVPList{
 					KeyValuePair{
 						Type:       PathParameterKey,
@@ -46,7 +46,7 @@ func TestClientSetupMessageAppend(t *testing.T) {
 			},
 			buf: []byte{},
 			expect: []byte{
-				0x01, 0xc0, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 'A',
+				0x01, 0xc0, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0x0e, 0x01, 0x01, 0x01, 'A',
 			},
 		},
 	}

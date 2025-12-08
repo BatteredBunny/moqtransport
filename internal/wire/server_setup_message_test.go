@@ -99,10 +99,10 @@ func TestParseServerSetupMessage(t *testing.T) {
 		},
 		{
 			data: []byte{
-				0xc0, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0x00, 0x00,
+				0xc0, 0x00, 0x00, 0x00, 0xff, 0x00, 0x00, 0x0e, 0x00,
 			},
 			expect: &ServerSetupMessage{
-				SelectedVersion: Draft_ietf_moq_transport_00,
+				SelectedVersion: CurrentVersion,
 				SetupParameters: KVPList{},
 			},
 			err: nil,

@@ -9,19 +9,7 @@ import (
 type Version uint64
 
 const (
-	Draft_ietf_moq_transport_00 Version = 0xff000000
-	Draft_ietf_moq_transport_01 Version = 0xff000001
-	Draft_ietf_moq_transport_02 Version = 0xff000002
-	Draft_ietf_moq_transport_03 Version = 0xff000003
-	Draft_ietf_moq_transport_04 Version = 0xff000004
-	Draft_ietf_moq_transport_05 Version = 0xff000005
-	Draft_ietf_moq_transport_06 Version = 0xff000006
-	Draft_ietf_moq_transport_07 Version = 0xff000007
-	Draft_ietf_moq_transport_08 Version = 0xff000008
-	Draft_ietf_moq_transport_10 Version = 0xff00000a
-	Draft_ietf_moq_transport_11 Version = 0xff00000b
-
-	CurrentVersion = Draft_ietf_moq_transport_11
+	CurrentVersion Version = 0xff00000e // draft-ietf-moq-transport-14
 )
 
 var SupportedVersions = []Version{CurrentVersion}
