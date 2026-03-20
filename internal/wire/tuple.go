@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Eyevinn/moqtransport/internal/slices"
+	"github.com/BatteredBunny/moqtransport/internal/slices"
 	"github.com/quic-go/quic-go/quicvarint"
 )
 

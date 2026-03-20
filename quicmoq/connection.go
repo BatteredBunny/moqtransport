@@ -3,7 +3,7 @@ package quicmoq
 import (
 	"context"
 
-	"github.com/Eyevinn/moqtransport"
+	"github.com/BatteredBunny/moqtransport"
 	"github.com/quic-go/quic-go"
 )
 

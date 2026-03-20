@@ -6,7 +6,7 @@ import (
 	"math"
 	"slices"
 
-	"github.com/Eyevinn/moqtransport/internal/wire"
+	"github.com/BatteredBunny/moqtransport/internal/wire"
 	"github.com/quic-go/quic-go/quicvarint"
 )
 

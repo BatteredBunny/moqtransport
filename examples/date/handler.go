@@ -11,9 +11,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Eyevinn/moqtransport"
-	"github.com/Eyevinn/moqtransport/quicmoq"
-	"github.com/Eyevinn/moqtransport/webtransportmoq"
+	"github.com/BatteredBunny/moqtransport"
+	"github.com/BatteredBunny/moqtransport/quicmoq"
+	"github.com/BatteredBunny/moqtransport/webtransportmoq"
 	"github.com/quic-go/quic-go"
 	"github.com/quic-go/quic-go/http3"
 	"github.com/quic-go/webtransport-go"
@@ -62,7 +62,7 @@ func (h *moqHandler) runServer(ctx context.Context) error {
 		return err
 	}
 	wt := webtransport.Server{
-		H3: http3.Server{
+		H3: &http3.Server{
 			Addr:      h.addr,
 			TLSConfig: h.tlsConfig,
 		},

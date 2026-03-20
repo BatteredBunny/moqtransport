@@ -3,7 +3,7 @@ package moqtransport
 import (
 	"time"
 
-	"github.com/Eyevinn/moqtransport/internal/wire"
+	"github.com/BatteredBunny/moqtransport/internal/wire"
 )
 
 type Location = wire.Location

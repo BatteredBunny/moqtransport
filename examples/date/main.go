@@ -14,9 +14,9 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/Eyevinn/moqtransport"
-	"github.com/Eyevinn/moqtransport/quicmoq"
-	"github.com/Eyevinn/moqtransport/webtransportmoq"
+	"github.com/BatteredBunny/moqtransport"
+	"github.com/BatteredBunny/moqtransport/quicmoq"
+	"github.com/BatteredBunny/moqtransport/webtransportmoq"
 	"github.com/quic-go/quic-go"
 	"github.com/quic-go/webtransport-go"
 )

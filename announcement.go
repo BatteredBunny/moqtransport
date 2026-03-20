@@ -1,6 +1,6 @@
 package moqtransport
 
-import "github.com/Eyevinn/moqtransport/internal/wire"
+import "github.com/BatteredBunny/moqtransport/internal/wire"
 
 type announcement struct {
 	requestID  uint64

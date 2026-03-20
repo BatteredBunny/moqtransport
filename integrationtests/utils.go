@@ -13,8 +13,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Eyevinn/moqtransport"
-	"github.com/Eyevinn/moqtransport/quicmoq"
+	"github.com/BatteredBunny/moqtransport"
+	"github.com/BatteredBunny/moqtransport/quicmoq"
 	"github.com/quic-go/quic-go"
 	"github.com/stretchr/testify/assert"
 )

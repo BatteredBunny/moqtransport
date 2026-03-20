@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Eyevinn/moqtransport"
+	"github.com/BatteredBunny/moqtransport"
 	"github.com/stretchr/testify/assert"
 )
 

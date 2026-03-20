@@ -1,7 +1,7 @@
 package webtransportmoq
 
 import (
-	"github.com/Eyevinn/moqtransport"
+	"github.com/BatteredBunny/moqtransport"
 	"github.com/quic-go/webtransport-go"
 )
 

@@ -7,7 +7,7 @@ import (
 	"io"
 	"iter"
 
-	"github.com/Eyevinn/moqtransport/internal/slices"
+	"github.com/BatteredBunny/moqtransport/internal/slices"
 	"github.com/mengelbart/qlog"
 	"github.com/mengelbart/qlog/moqt"
 	"github.com/quic-go/quic-go/quicvarint"

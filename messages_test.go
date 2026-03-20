@@ -3,7 +3,7 @@ package moqtransport
 import (
 	"testing"
 
-	"github.com/Eyevinn/moqtransport/internal/wire"
+	"github.com/BatteredBunny/moqtransport/internal/wire"
 	"github.com/stretchr/testify/assert"
 )
 

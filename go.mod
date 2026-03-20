@@ -1,4 +1,4 @@
-module github.com/Eyevinn/moqtransport
+module github.com/BatteredBunny/moqtransport
 
 go 1.23.6
 
