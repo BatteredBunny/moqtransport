@@ -35,8 +35,3 @@ func (s *Stream) Reset(code uint32) {
 func (s *Stream) Stop(code uint32) {
 	s.stream.CancelRead(webtransport.StreamErrorCode(code))
 }
-
-// StreamID implements moqtransport.Stream.
-func (s *Stream) StreamID() uint64 {
-	return uint64(s.stream.StreamID())
-}

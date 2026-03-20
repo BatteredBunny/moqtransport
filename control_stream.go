@@ -35,7 +35,6 @@ func (s *controlStream) write(msg wire.ControlMessage) error {
 	if s.qlogger != nil {
 		s.qlogger.Log(moqt.ControlMessageEvent{
 			EventName: moqt.ControlMessageEventCreated,
-			StreamID:  s.stream.StreamID(),
 			Length:    uint64(len(buf)),
 			Message:   msg,
 		})

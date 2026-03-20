@@ -31,7 +31,6 @@ func newSubgroup(stream SendStream, trackAlias, groupID, subgroupID uint64, publ
 	if qlogger != nil {
 		qlogger.Log(moqt.StreamTypeSetEvent{
 			Owner:      moqt.GetOwner(moqt.OwnerLocal),
-			StreamID:   stream.StreamID(),
 			StreamType: moqt.StreamTypeSubgroupHeader,
 		})
 	}
@@ -66,7 +65,6 @@ func (s *Subgroup) WriteObject(objectID uint64, payload []byte) (int, error) {
 		*sid = s.subgroupID
 		s.qlogger.Log(moqt.SubgroupObjectEvent{
 			EventName:              moqt.SubgroupObjectEventCreated,
-			StreamID:               s.stream.StreamID(),
 			GroupID:                gid,
 			SubgroupID:             sid,
 			ObjectID:               objectID,

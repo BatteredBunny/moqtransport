@@ -35,9 +35,7 @@ const (
 	StreamTypeSubgroupSIDExtEOG       StreamType = 0x1D
 )
 
-var (
-	errInvalidStreamType = errors.New("invalid stream type")
-)
+var errInvalidStreamType = errors.New("invalid stream type")
 
 func isSubgroupStreamType(st StreamType) bool {
 	return (st >= 0x10 && st <= 0x15) || (st >= 0x18 && st <= 0x1D)
@@ -58,8 +56,7 @@ func subgroupContainsEndOfGroup(st StreamType) bool {
 }
 
 type ObjectStreamParser struct {
-	qlogger  *qlog.Logger
-	streamID uint64
+	qlogger *qlog.Logger
 
 	reader        messageReader
 	typ           StreamType
@@ -81,7 +78,7 @@ func (p *ObjectStreamParser) Identifier() uint64 {
 	return p.identifier
 }
 
-func NewObjectStreamParser(r io.Reader, streamID uint64, qlogger *qlog.Logger) (*ObjectStreamParser, error) {
+func NewObjectStreamParser(r io.Reader, qlogger *qlog.Logger) (*ObjectStreamParser, error) {
 	br := bufio.NewReader(r)
 	st, err := quicvarint.Read(br)
 	if err != nil {
@@ -93,7 +90,6 @@ func NewObjectStreamParser(r io.Reader, streamID uint64, qlogger *qlog.Logger) (
 		if qlogger != nil {
 			qlogger.Log(moqt.StreamTypeSetEvent{
 				Owner:      moqt.GetOwner(moqt.OwnerRemote),
-				StreamID:   streamID,
 				StreamType: moqt.StreamTypeFetchHeader,
 			})
 		}
@@ -103,7 +99,6 @@ func NewObjectStreamParser(r io.Reader, streamID uint64, qlogger *qlog.Logger) (
 		}
 		return &ObjectStreamParser{
 			qlogger:           qlogger,
-			streamID:          streamID,
 			reader:            br,
 			typ:               streamType,
 			identifier:        fhm.RequestID,
@@ -116,7 +111,6 @@ func NewObjectStreamParser(r io.Reader, streamID uint64, qlogger *qlog.Logger) (
 		if qlogger != nil {
 			qlogger.Log(moqt.StreamTypeSetEvent{
 				Owner:      moqt.GetOwner(moqt.OwnerRemote),
-				StreamID:   streamID,
 				StreamType: moqt.StreamTypeSubgroupHeader,
 			})
 		}
@@ -134,7 +128,6 @@ func NewObjectStreamParser(r io.Reader, streamID uint64, qlogger *qlog.Logger) (
 		}
 		return &ObjectStreamParser{
 			qlogger:    qlogger,
-			streamID:   streamID,
 			reader:     br,
 			typ:        streamType,
 			identifier: shsm.TrackAlias,
@@ -201,7 +194,6 @@ func (p *ObjectStreamParser) parseSubgroupObject() (*ObjectMessage, error) {
 		*sid = p.SubgroupID
 		p.qlogger.Log(moqt.SubgroupObjectEvent{
 			EventName:              moqt.SubgroupObjectEventParsed,
-			StreamID:               p.streamID,
 			GroupID:                gid,
 			SubgroupID:             sid,
 			ObjectID:               m.ObjectID,
@@ -246,7 +238,6 @@ func (p *ObjectStreamParser) parseFetchObject() (*ObjectMessage, error) {
 		)
 		p.qlogger.Log(moqt.FetchObjectEvent{
 			EventName:              moqt.FetchObjectEventParsed,
-			StreamID:               p.streamID,
 			GroupID:                m.GroupID,
 			SubgroupID:             m.SubgroupID,
 			ObjectID:               m.ObjectID,

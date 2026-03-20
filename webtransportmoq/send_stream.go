@@ -25,8 +25,3 @@ func (s *SendStream) Reset(code uint32) {
 func (s *SendStream) Close() error {
 	return s.stream.Close()
 }
-
-// StreamID implements moqtransport.SendStream
-func (s *SendStream) StreamID() uint64 {
-	return uint64(s.stream.StreamID())
-}

@@ -173,7 +173,7 @@ func (s *Session) readStreams(ctx context.Context) error {
 		// stream and close all remote streams when the sesssion closes.
 		go func() {
 			s.logger.Info("handling new uni stream")
-			parser, err := wire.NewObjectStreamParser(stream, stream.StreamID(), s.Qlogger)
+			parser, err := wire.NewObjectStreamParser(stream, s.Qlogger)
 			if err != nil {
 				return
 			}

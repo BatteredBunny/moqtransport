@@ -24,7 +24,6 @@ func newFetchStream(stream SendStream, requestID uint64, qlogger *qlog.Logger) (
 	if qlogger != nil {
 		qlogger.Log(moqt.StreamTypeSetEvent{
 			Owner:      moqt.GetOwner(moqt.OwnerLocal),
-			StreamID:   stream.StreamID(),
 			StreamType: moqt.StreamTypeFetchHeader,
 		})
 	}
@@ -56,7 +55,6 @@ func (f *FetchStream) WriteObject(
 	if f.qlogger != nil {
 		f.qlogger.Log(moqt.FetchObjectEvent{
 			EventName:              moqt.FetchObjectEventCreated,
-			StreamID:               f.stream.StreamID(),
 			GroupID:                groupID,
 			SubgroupID:             subgroupID,
 			ObjectID:               objectID,
